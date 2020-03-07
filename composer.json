@@ -1,0 +1,17 @@
+{
+    "name": "nazonohito51/typed-properties-cconverter",
+    "description": "convert @ver in phpdoc to PHP7.4 typed properties",
+    "type": "library",
+    "require": {
+        "nikic/php-parser": "^4.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    },
+    "authors": [
+        {
+            "name": "nazonohito51",
+            "email": "nazonohito51@gmail.com"
+        }
+    ]
+}
