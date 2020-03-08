@@ -2,16 +2,30 @@
     "name": "nazonohito51/typed-properties-cconverter",
     "description": "convert @ver in phpdoc to PHP7.4 typed properties",
     "type": "library",
-    "require": {
-        "nikic/php-parser": "^4.3"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^9.0"
-    },
+    "license": "MIT",
     "authors": [
         {
             "name": "nazonohito51",
             "email": "nazonohito51@gmail.com"
         }
-    ]
+    ],
+    "require": {
+        "php": ">=7.2",
+        "nikic/php-parser": "^4.3",
+        "phpdocumentor/reflection-docblock": "^5.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "TypedPropertiesConverter\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/TestCase.php"
+        ]
+    },
+    "bin": ["bin/cakephp2-ide-helper"]
 }
