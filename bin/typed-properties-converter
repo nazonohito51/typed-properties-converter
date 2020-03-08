@@ -1,0 +1,37 @@
+#!/usr/bin/env php
+<?php
+declare(strict_types=1);
+
+use phpDocumentor\Reflection\DocBlockFactory;
+use PhpParser\Node;
+use PhpParser\NodeTraverser;
+use PhpParser\ParserFactory;
+
+if ($argc !== 2) {
+    throw new InvalidArgumentException('require path');
+}
+
+$autoloaderPaths = ['/vendor/autoload.php', __DIR__ . '/../vendor/autoload.php'];
+foreach ($autoloaderPaths as $autoloaderPath) {
+    if (is_file($autoloaderPath)) {
+        require_once $autoloaderPath;
+        break;
+    }
+}
+
+$autoloaderIncluded = false;
+foreach (get_included_files() as $includedFile) {
+    if (preg_match('|/autoload.php\z|', $includedFile) === 1) {
+        $autoloaderIncluded = true;
+    }
+}
+if ($autoloaderIncluded === false) {
+    echo "searching autoloader is failed.";
+}
+
+$command = new \TypedPropertiesConverter\Command(
+    new \TypedPropertiesConverter\Converter(
+            (new ParserFactory)->create(ParserFactory::ONLY_PHP7)
+    )
+);
+$command->execute($argv[1]);
